@@ -1,5 +1,3 @@
-"use strict";
-
 const express = require("express");
 const axios = require("axios");
 const mongoose = require("mongoose");
@@ -97,4 +95,5 @@ app.delete("/books/:id", async (req, res) => {
 //   // and here
 //   return result;
 // };
+
 module.exports.handler = serverless(app);
