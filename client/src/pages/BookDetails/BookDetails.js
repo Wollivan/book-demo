@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import API_ENDPOINT from "./api";
 
 export default function BookDetails() {
   const [book, setBook] = useState({});
@@ -25,13 +26,6 @@ export default function BookDetails() {
   const updateBook = async (e) => {
     e.preventDefault();
 
-    /*
-    {
-      name: "",
-      description: "Adventure",
-      year: ""
-    }
-    */
     const bodyToSend = {};
 
     for (const prop in formUpdate) {
@@ -40,14 +34,14 @@ export default function BookDetails() {
       }
     }
 
-    const API = `http://localhost:8080/books/${id}`;
+    const API = `${API_ENDPOINT}/books/${id}`;
     const res = await axios.put(API, bodyToSend);
     console.log(res);
     getBookDetails();
   };
 
   const getBookDetails = async () => {
-    const API = `http://localhost:8080/books/${id}`;
+    const API = `${API_ENDPOINT}/books/${id}`;
     const res = await axios.get(API);
     setBook(res.data[0]);
   };

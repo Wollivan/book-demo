@@ -25,7 +25,7 @@ app.get("/.netlify/functions/api", (req, res) => {
 });
 
 // retrieve all books
-app.get("/.netlify/functions/books", async (req, res) => {
+app.get("/.netlify/functions/api/books", async (req, res) => {
   try {
     // try and make a call to the database
     const allBooks = await Book.find();
@@ -38,7 +38,7 @@ app.get("/.netlify/functions/books", async (req, res) => {
 });
 
 // retrieve a specific book
-app.get("/.netlify/functions/books/:id", async (req, res) => {
+app.get("/.netlify/functions/api/books/:id", async (req, res) => {
   try {
     const theBook = await Book.find({ _id: req.params.id });
     res.status(200).json(theBook);
@@ -49,7 +49,7 @@ app.get("/.netlify/functions/books/:id", async (req, res) => {
 });
 
 // create a new book
-app.post("/.netlify/functions/books", async (req, res) => {
+app.post("/.netlify/functions/api/books", async (req, res) => {
   try {
     // const cover = await axios.get(`https://covers.openlibrary.org/b/id/${req.body.isbn}-L.jpg`);
     const newBook = await Book.create(req.body);
@@ -63,7 +63,7 @@ app.post("/.netlify/functions/books", async (req, res) => {
 //https://covers.openlibrary.org/b/id/12547191-L.jpg
 
 // update a book
-app.put("/.netlify/functions/books/:id", async (req, res) => {
+app.put("/.netlify/functions/api/books/:id", async (req, res) => {
   try {
     const bookToUpdate = req.params.id;
     const updatedBook = await Book.updateOne({ _id: bookToUpdate }, req.body);
@@ -75,7 +75,7 @@ app.put("/.netlify/functions/books/:id", async (req, res) => {
 });
 
 // delete a book
-app.delete("/.netlify/functions/books/:id", async (req, res) => {
+app.delete("/.netlify/functions/api/books/:id", async (req, res) => {
   try {
     const bookToDelete = req.params.id;
     const deletedBook = await Book.deleteOne({ _id: bookToDelete });
