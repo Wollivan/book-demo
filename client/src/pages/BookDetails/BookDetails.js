@@ -67,16 +67,11 @@ export default function BookDetails() {
 
       <form onSubmit={updateBook}>
         <input name="title" onChange={handleChangeUpdate} value={formUpdate.title} placeholder="Title of Book" />
-        <br />
         <input name="author" onChange={handleChangeUpdate} value={formUpdate.author} placeholder="Author" />
-        <br />
         <input name="description" onChange={handleChangeUpdate} value={formUpdate.description} placeholder="Description" />
-        <br />
         <input name="year" onChange={handleChangeUpdate} value={formUpdate.year} placeholder="Year of Release" />
-        <br />
         <input name="isbn" onChange={handleChangeUpdate} value={formUpdate.isbn} placeholder="ISBN Number" />
-        <br />
-        <button>Update Book Details</button>
+        <input type="submit" value="Create Book" />
       </form>
     </div>
   );

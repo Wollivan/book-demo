@@ -13,18 +13,23 @@ body {
 a {
   color: #fff;
   text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
 }
-a:hover {
-  text-decoration: underline;
+form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
-
 input {
   padding: 1rem;
   margin: 1rem 0;
   border: none;
   font-family: monospace;
+  width: 45%;
 }
-button {
+input[type="submit"] {
   padding: 1rem;
   background-color: white;
   border: 3px solid white;
@@ -32,10 +37,10 @@ button {
   font-family: monospace;
   text-transform: uppercase;
   font-weight: 700;
-}
-button:hover {
-  background-color: #333;
-  color: #fff;
+  &:hover {
+    background-color: #333;
+    color: #fff;
+  }
 }
 
 .books {
@@ -44,23 +49,30 @@ button:hover {
   justify-content: space-between;
 }
 .book {
-  width: 45%;
+  width: 100%;
   padding: 2rem;
   margin: 2rem 0;
   background-color: #444;
   display: flex;
   flex-direction: column;
   position: relative;
+  align-items: center;
+  &-link {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  @media (min-width: 900px) {
+    width: 45%;
+  }
 }
-.book-link {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
+
 img {
   max-width: 100%;
-  max-height: 330px;
-  margin-right: auto;
+  @media (min-width: 900px) {
+    max-height: 330px;
+  }
 }
 .delete {
   color: #fff;
@@ -72,7 +84,7 @@ img {
   top: 1rem;
   font-size: 2rem;
   cursor: pointer;
-}
-.delete:hover {
-  color: #ff0000;
+  &:hover {
+    color: #ff0000;
+  }
 }
