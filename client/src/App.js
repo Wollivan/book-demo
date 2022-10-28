@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
 import BookDetails from "./pages/BookDetails/BookDetails";
-import API_ENDPOINT from "./api";
+import { API_ENDPOINT } from "./api";
 
 function App() {
   const [books, setBooks] = useState([]);

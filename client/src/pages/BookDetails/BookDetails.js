@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import API_ENDPOINT from "../../api";
+import { API_ENDPOINT } from "../../api";
 
 export default function BookDetails() {
   const [book, setBook] = useState({});
