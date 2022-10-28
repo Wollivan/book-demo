@@ -92,6 +92,7 @@ app.delete("/.netlify/functions/api/books/:id", async (req, res) => {
 // new Netlify way to start the server
 const handler = serverless(app);
 
+// we use this so the handler can use async (that mongoose uses)
 module.exports.handler = async (event, context) => {
   // you can do any code here
   const result = await handler(event, context);
@@ -100,4 +101,5 @@ module.exports.handler = async (event, context) => {
   // return { statusCode: "200", body: "Hello world!" };
 };
 
+// this doesn't work with asycn functions... so mongoose
 // module.exports.handler = serverless(app);
