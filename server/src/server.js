@@ -5,6 +5,7 @@ const axios = require("axios");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const bp = require("body-parser");
+const serverless = require("serverless-http");
 require("dotenv").config();
 
 const Book = require("./models/book");
@@ -86,20 +87,13 @@ app.delete("/books/:id", async (req, res) => {
 });
 
 // start the app listening
-app.listen(PORT, () => console.log(`App is listening on port ${PORT}`));
+//app.listen(PORT, () => console.log(`App is listening on port ${PORT}`));
 
-/*
-{
-  title: String,
-  description: String,
-  year: String,
-}
-
-
-
-
-{
-  name: "Tim",
-  description: "The best"
-}
-*/
+// new Netlify way to start the server
+const handler = serverless(app);
+module.exports.handler = async (event, context) => {
+  // you can do any code here
+  const result = await handler(event, context);
+  // and here
+  return result;
+};
