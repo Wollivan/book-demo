@@ -90,10 +90,11 @@ app.delete("/books/:id", async (req, res) => {
 //app.listen(PORT, () => console.log(`App is listening on port ${PORT}`));
 
 // new Netlify way to start the server
-const handler = serverless(app);
-module.exports.handler = async (event, context) => {
-  // you can do any code here
-  const result = await handler(event, context);
-  // and here
-  return result;
-};
+// const handler = serverless(app);
+// module.exports.handler = async (event, context) => {
+//   // you can do any code here
+//   const result = await handler(event, context);
+//   // and here
+//   return result;
+// };
+module.exports.handler = serverless(app);
