@@ -18,12 +18,14 @@ const PORT = process.env.PORT || 8080;
 
 mongoose.connect(process.env.DATABASE_URL);
 
-app.get("/", (req, res) => {
-  res.json({ Tim: "is great" });
+//http://localhost:9000/.netlify/functions/api
+app.get("/.netlify/functions/api", (req, res) => {
+  console.log("we are here");
+  res.json({ Tom: "is great" });
 });
 
 // retrieve all books
-app.get("/books", async (req, res) => {
+app.get("/.netlify/functions/books", async (req, res) => {
   try {
     // try and make a call to the database
     const allBooks = await Book.find();
@@ -36,7 +38,7 @@ app.get("/books", async (req, res) => {
 });
 
 // retrieve a specific book
-app.get("/books/:id", async (req, res) => {
+app.get("/.netlify/functions/books/:id", async (req, res) => {
   try {
     const theBook = await Book.find({ _id: req.params.id });
     res.status(200).json(theBook);
@@ -47,7 +49,7 @@ app.get("/books/:id", async (req, res) => {
 });
 
 // create a new book
-app.post("/books", async (req, res) => {
+app.post("/.netlify/functions/books", async (req, res) => {
   try {
     // const cover = await axios.get(`https://covers.openlibrary.org/b/id/${req.body.isbn}-L.jpg`);
     const newBook = await Book.create(req.body);
@@ -61,7 +63,7 @@ app.post("/books", async (req, res) => {
 //https://covers.openlibrary.org/b/id/12547191-L.jpg
 
 // update a book
-app.put("/books/:id", async (req, res) => {
+app.put("/.netlify/functions/books/:id", async (req, res) => {
   try {
     const bookToUpdate = req.params.id;
     const updatedBook = await Book.updateOne({ _id: bookToUpdate }, req.body);
@@ -73,7 +75,7 @@ app.put("/books/:id", async (req, res) => {
 });
 
 // delete a book
-app.delete("/books/:id", async (req, res) => {
+app.delete("/.netlify/functions/books/:id", async (req, res) => {
   try {
     const bookToDelete = req.params.id;
     const deletedBook = await Book.deleteOne({ _id: bookToDelete });
@@ -88,12 +90,14 @@ app.delete("/books/:id", async (req, res) => {
 //app.listen(PORT, () => console.log(`App is listening on port ${PORT}`));
 
 // new Netlify way to start the server
-// const handler = serverless(app);
-// module.exports.handler = async (event, context) => {
-//   // you can do any code here
-//   const result = await handler(event, context);
-//   // and here
-//   return result;
-// };
+const handler = serverless(app);
 
-module.exports.handler = serverless(app);
+module.exports.handler = async (event, context) => {
+  // you can do any code here
+  const result = await handler(event, context);
+  // and here
+  return result;
+  // return { statusCode: "200", body: "Hello world!" };
+};
+
+// module.exports.handler = serverless(app);
