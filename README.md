@@ -34,18 +34,31 @@ Inside the server directory:
 Now your folder structure should look something like this:
 
 book-demo
+
 ├── client
+
 │ ├── public
+
 │ └── src
+
 | | ├── App.css
+
 | | ├── App.js
+
 | | ├── index.js
+
 ├── server
+
 | ├── src
+
 | | ├── models
+
 | | ├── api.js
+
 | ├── package.json
+
 ├── .gitignore
+
 └── README.md
 
 ## server
