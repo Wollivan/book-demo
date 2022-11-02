@@ -1,5 +1,4 @@
 const express = require("express");
-const axios = require("axios");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const bp = require("body-parser");
@@ -14,13 +13,12 @@ app.use(cors());
 app.use(bp.json());
 app.use(bp.urlencoded({ extended: true }));
 
-const PORT = process.env.PORT || 8080;
+// const PORT = process.env.PORT || 8080;
 
 mongoose.connect(process.env.DATABASE_URL);
 
 //http://localhost:9000/.netlify/functions/api
 app.get("/.netlify/functions/api", (req, res) => {
-  console.log("we are here");
   res.json({ Tom: "is great" });
 });
 
@@ -86,8 +84,8 @@ app.delete("/.netlify/functions/api/books/:id", async (req, res) => {
   }
 });
 
-// start the app listening
-//app.listen(PORT, () => console.log(`App is listening on port ${PORT}`));
+// old way of starting the server
+// app.listen(PORT, () => console.log(`App is listening on port ${PORT}`));
 
 // new Netlify way to start the server
 const handler = serverless(app);
@@ -98,8 +96,4 @@ module.exports.handler = async (event, context) => {
   const result = await handler(event, context);
   // and here
   return result;
-  // return { statusCode: "200", body: "Hello world!" };
 };
-
-// this doesn't work with asycn functions... so mongoose
-// module.exports.handler = serverless(app);

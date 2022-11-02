@@ -35,14 +35,31 @@ const bookStarts = [
 ];
 
 async function seed() {
-  bookStarts.forEach(async (book) => {
-    await Book.create({
-      title: book.title,
-      author: book.author,
-      description: book.description,
-      year: book.year,
-      isbn: book.isbn,
-    });
+  await Book.create({
+    title: "The Silmarilion",
+    description: "Basically the Bible except its fantasy.",
+    year: "1977",
+    isbn: "9780618391110",
+  });
+  await Book.create({
+    title: "Twilight",
+    description: "Shiny vampires",
+    year: "2009",
+    isbn: "9780316015844",
+  });
+  await Book.create({
+    title: "The  Hobbit",
+    author: "JRR Tolkien",
+    description: "Bilbo does a nusiance.",
+    year: "1937",
+    isbn: "9780547928227",
+  });
+  await Book.create({
+    title: "The  Fellowship of the Ring",
+    author: "JRR Tolkien",
+    description: "Frodo does a nusiance.",
+    year: "1954",
+    isbn: "0261102354",
   });
 
   console.log("Books summoned!");
